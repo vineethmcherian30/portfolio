@@ -1,0 +1,567 @@
+# Improved Portfolio Website (GitHub Pages Ready)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vineeth M Cherian - Senior Cloud Infrastructure & Platform Engineer specializing in GCP, Terraform, DevOps, and Observability.">
+    <meta name="keywords" content="Cloud Engineer, Platform Engineer, GCP, Terraform, DevOps, Kubernetes">
+    <meta name="author" content="Vineeth M Cherian">
+
+    <title>Vineeth M Cherian | Cloud Infrastructure Engineer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #0b0e14;
+            --surface: #161b22;
+            --surface-light: #1f2630;
+            --primary: #357ae8;
+            --accent: #00e676;
+            --text-main: #e6edf3;
+            --text-dim: #8b949e;
+            --border: #30363d;
+            --terminal-bg: #010409;
+            --shadow: rgba(0,0,0,0.45);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:
+                radial-gradient(circle at top right, rgba(53,122,232,0.18), transparent 30%),
+                radial-gradient(circle at bottom left, rgba(0,230,118,0.12), transparent 25%);
+            padding: 20px;
+        }
+
+        .hero-wrapper {
+            width: 100%;
+            max-width: 950px;
+        }
+
+        .hero-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hero-title h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .hero-title p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        .terminal-window {
+            background: var(--terminal-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            width: 100%;
+            min-height: 420px;
+            height: 70vh;
+            max-height: 650px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.75);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #21262d;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .terminal-label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-left: 8px;
+        }
+
+        .terminal-body {
+            padding: 22px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .cmd-line {
+            margin-bottom: 8px;
+        }
+
+        .prompt {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .command-text {
+            color: var(--text-main);
+        }
+
+        .output-text {
+            color: var(--text-dim);
+            display: block;
+            padding-left: 15px;
+            margin-bottom: 16px;
+            white-space: pre-wrap;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background: var(--accent);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        section {
+            margin-bottom: 100px;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 16px;
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            background: var(--surface-light);
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--primary);
+            background: rgba(53, 122, 232, 0.1);
+            padding: 5px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            display: inline-block;
+            letter-spacing: 0.8px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card p,
+        .card li {
+            color: var(--text-dim);
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-pill {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(53,122,232,0.12);
+            border: 1px solid rgba(53,122,232,0.25);
+            color: var(--text-main);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            background: #0d1117;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            opacity: 0.92;
+        }
+
+        @media (max-width: 768px) {
+            .terminal-window {
+                height: 60vh;
+            }
+
+            .terminal-body {
+                font-size: 0.85rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="hero-wrapper">
+
+        <div class="hero-title">
+            <h1>Vineeth M Cherian</h1>
+            <p>Senior Cloud Infrastructure & Platform Engineer</p>
+        </div>
+
+        <div class="terminal-window">
+
+            <div class="terminal-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span class="terminal-label">vineeth@cloud-shell:~/portfolio</span>
+            </div>
+
+            <div class="terminal-body" id="terminal"></div>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <section id="about">
+        <h2><i class="fas fa-user"></i> About</h2>
+
+        <div class="card">
+            <p>
+                Experienced Cloud Infrastructure & Platform Engineer with expertise in Google Cloud Platform,
+                Infrastructure as Code, Observability, and Platform Operations. Passionate about building scalable,
+                secure, and reliable cloud solutions.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2><i class="fas fa-layer-group"></i> Skills</h2>
+
+        <div class="skills-grid">
+            <span class="skill-pill">Google Cloud Platform</span>
+            <span class="skill-pill">AWS</span>
+            <span class="skill-pill">Terraform</span>
+            <span class="skill-pill">Kubernetes</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">Linux</span>
+            <span class="skill-pill">BigQuery</span>
+            <span class="skill-pill">Prometheus</span>
+            <span class="skill-pill">Grafana</span>
+            <span class="skill-pill">Dynatrace</span>
+            <span class="skill-pill">CI/CD</span>
+            <span class="skill-pill">GitHub Actions</span>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2><i class="fas fa-certificate"></i> Certifications</h2>
+
+        <div class="grid">
+            <div class="card">
+                <span class="badge">Google Cloud</span>
+                <h3>Professional Cloud Architect</h3>
+                <p>
+                    Proficient in designing and managing scalable, secure, and reliable cloud architectures on GCP.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="badge">Google Cloud</span>
+                <h3>Associate Cloud Engineer</h3>
+                <p>
+                    Experienced in deploying applications, managing infrastructure, and monitoring cloud operations.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="badge">ITIL®</span>
+                <h3>ITIL Foundation</h3>
+                <p>
+                    Certified in IT Service Management best practices and operational excellence.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2><i class="fas fa-code"></i> Projects</h2>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Terraform GCP Landing Zone</h3>
+                <p>
+                    Built reusable Terraform modules for secure multi-project Google Cloud deployments.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Kubernetes Monitoring Stack</h3>
+                <p>
+                    Implemented Prometheus and Grafana observability for containerized workloads.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>CI/CD Automation Pipeline</h3>
+                <p>
+                    Designed automated deployment workflows using GitHub Actions and infrastructure validation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2><i class="fas fa-briefcase"></i> Experience</h2>
+
+        <div class="card">
+            <h3>Senior Platform Engineer | Quantiphi Analytics</h3>
+
+            <p style="color: var(--primary); font-weight: 700; margin-top: 10px;">
+                2021 – 2025
+            </p>
+
+            <ul>
+                <li>Managed Compute Engine infrastructure and optimized BigQuery workloads.</li>
+                <li>Implemented Zero Trust security controls and operational monitoring.</li>
+                <li>Automated infrastructure provisioning using Terraform and CI/CD pipelines.</li>
+                <li>Improved observability using Prometheus, Grafana, and Dynatrace.</li>
+            </ul>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>Melbourne, Victoria, Australia</p>
+
+    <div class="footer-links">
+
+        <a href="mailto:vineethcherian@gmail.com" class="contact-btn">
+            <i class="fas fa-envelope"></i>
+            Email
+        </a>
+
+        <a href="https://github.com/your-github" target="_blank" class="contact-btn">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+
+        <a href="https://linkedin.com/in/your-linkedin" target="_blank" class="contact-btn">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+
+    </div>
+
+    <p style="margin-top: 35px; font-size: 0.85rem;">
+        © 2026 Vineeth M Cherian
+    </p>
+</footer>
+
+<script>
+    const term = document.getElementById('terminal');
+
+    const terminalScript = [
+        {
+            cmd: 'whoami',
+            output: 'Vineeth M Cherian\nSenior Cloud Infrastructure & Platform Engineer',
+            delay: 700
+        },
+        {
+            cmd: 'location --current',
+            output: 'Melbourne, Australia',
+            delay: 600
+        },
+        {
+            cmd: 'gcloud projects list',
+            output: 'Loaded active cloud projects successfully.',
+            delay: 700
+        },
+        {
+            cmd: 'cat skills.json',
+            output: '{\n  "cloud": ["GCP", "AWS"],\n  "iac": ["Terraform"],\n  "containers": ["Docker", "Kubernetes"],\n  "monitoring": ["Prometheus", "Grafana", "Dynatrace"]\n}',
+            delay: 1000
+        },
+        {
+            cmd: 'status --availability',
+            output: 'Available for Cloud & Platform Engineering opportunities.',
+            delay: 900
+        }
+    ];
+
+    async function typeText(element, text, speed = 45) {
+        for (const char of text) {
+            element.textContent += char;
+            await new Promise(resolve => setTimeout(resolve, speed));
+        }
+    }
+
+    async function runTerminal() {
+        for (const line of terminalScript) {
+
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'cmd-line';
+            lineDiv.innerHTML = `
+                <span class="prompt">vineeth@cloud:~$</span>
+                <span class="command-text"></span>
+            `;
+
+            term.appendChild(lineDiv);
+
+            const cmdText = lineDiv.querySelector('.command-text');
+
+            await typeText(cmdText, line.cmd);
+
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            const output = document.createElement('div');
+            output.className = 'output-text';
+            output.innerText = line.output;
+
+            term.appendChild(output);
+
+            term.scrollTop = term.scrollHeight;
+
+            await new Promise(resolve => setTimeout(resolve, line.delay));
+        }
+
+        const finalPrompt = document.createElement('div');
+        finalPrompt.innerHTML = `
+            <span class="prompt">vineeth@cloud:~$</span>
+            <span class="cursor"></span>
+        `;
+
+        term.appendChild(finalPrompt);
+    }
+
+    window.addEventListener('load', runTerminal);
+</script>
+
+</body>
+</html>
+```
+
+# Final Notes
+
+Replace these placeholders before deploying:
+
+* `https://github.com/your-github`
+* `https://linkedin.com/in/your-linkedin`
+
+Save this as:
+
+```text
+index.html
+```
+
+Then upload it to your GitHub repository and enable GitHub Pages.
