@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vineeth M Cherian - Senior Cloud Infrastructure & Platform Engineer specializing in GCP, Terraform, DevOps, and Observability.">
-    <meta name="keywords" content="Cloud Engineer, Platform Engineer, GCP, Terraform, DevOps, Kubernetes">
-    <meta name="author" content="Vineeth M Cherian">
-
+    <meta name="description" content="Vineeth M Cherian - Senior Cloud Infrastructure & Platform Engineer specialising in GCP, Terraform, DevOps, and Observability.">
     <title>Vineeth M Cherian | Cloud Infrastructure Engineer</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -29,15 +25,8 @@
             --shadow: rgba(0,0,0,0.45);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -47,11 +36,27 @@
             overflow-x: hidden;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        a { color: inherit; text-decoration: none; }
 
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(11,14,20,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-brand { font-weight: 700; color: var(--primary); font-size: 1rem; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a { font-size: 0.88rem; color: var(--text-dim); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-main); }
+
+        /* ── HERO ── */
         header {
             min-height: 100vh;
             display: flex;
@@ -60,29 +65,25 @@
             background:
                 radial-gradient(circle at top right, rgba(53,122,232,0.18), transparent 30%),
                 radial-gradient(circle at bottom left, rgba(0,230,118,0.12), transparent 25%);
-            padding: 20px;
+            padding: 80px 20px 20px;
         }
 
-        .hero-wrapper {
-            width: 100%;
-            max-width: 950px;
-        }
+        .hero-wrapper { width: 100%; max-width: 950px; }
 
-        .hero-title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .hero-title h1 {
-            font-size: clamp(2.2rem, 5vw, 4rem);
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-
-        .hero-title p {
+        .hero-title { text-align: center; margin-bottom: 30px; }
+        .hero-title h1 { font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: 10px; font-weight: 800; }
+        .hero-title p { color: var(--text-dim); font-size: 1.1rem; }
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 0.88rem;
             color: var(--text-dim);
-            font-size: 1.1rem;
         }
+        .hero-meta span { display: flex; align-items: center; gap: 6px; }
+        .hero-meta a { color: var(--accent); }
 
         .terminal-window {
             background: var(--terminal-bg);
@@ -106,22 +107,11 @@
             gap: 10px;
             border-bottom: 1px solid var(--border);
         }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
         .red { background: #ff5f56; }
         .yellow { background: #ffbd2e; }
         .green { background: #27c93f; }
-
-        .terminal-label {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            margin-left: 8px;
-        }
+        .terminal-label { font-size: 0.8rem; color: var(--text-dim); margin-left: 8px; }
 
         .terminal-body {
             padding: 22px;
@@ -131,19 +121,9 @@
             flex-grow: 1;
         }
 
-        .cmd-line {
-            margin-bottom: 8px;
-        }
-
-        .prompt {
-            color: var(--accent);
-            margin-right: 10px;
-        }
-
-        .command-text {
-            color: var(--text-main);
-        }
-
+        .cmd-line { margin-bottom: 8px; }
+        .prompt { color: var(--accent); margin-right: 10px; }
+        .command-text { color: var(--text-main); }
         .output-text {
             color: var(--text-dim);
             display: block;
@@ -151,31 +131,16 @@
             margin-bottom: 16px;
             white-space: pre-wrap;
         }
-
         .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 18px;
+            display: inline-block; width: 8px; height: 18px;
             background: var(--accent);
-            animation: blink 1s infinite;
-            vertical-align: middle;
+            animation: blink 1s infinite; vertical-align: middle;
         }
+        @keyframes blink { 50% { opacity: 0; } }
 
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-
-        .container {
-            max-width: 1150px;
-            margin: 0 auto;
-            padding: 100px 20px;
-        }
-
-        section {
-            margin-bottom: 100px;
-        }
+        /* ── LAYOUT ── */
+        .container { max-width: 1150px; margin: 0 auto; padding: 100px 20px; }
+        section { margin-bottom: 100px; }
 
         h2 {
             font-size: 2.2rem;
@@ -188,11 +153,7 @@
             gap: 12px;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 28px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
 
         .card {
             background: var(--surface);
@@ -202,127 +163,175 @@
             transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
             box-shadow: 0 10px 25px var(--shadow);
         }
-
-        .card:hover {
-            border-color: var(--primary);
-            transform: translateY(-8px);
-            background: var(--surface-light);
-        }
+        .card:hover { border-color: var(--primary); transform: translateY(-8px); background: var(--surface-light); }
 
         .badge {
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: var(--primary);
-            background: rgba(53, 122, 232, 0.1);
-            padding: 5px 10px;
-            border-radius: 6px;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-            display: inline-block;
-            letter-spacing: 0.8px;
+            font-size: 0.75rem; font-weight: 800; color: var(--primary);
+            background: rgba(53,122,232,0.1);
+            padding: 5px 10px; border-radius: 6px;
+            text-transform: uppercase; margin-bottom: 18px;
+            display: inline-block; letter-spacing: 0.8px;
+        }
+        .badge-green {
+            color: var(--accent);
+            background: rgba(0,230,118,0.1);
         }
 
-        .card h3 {
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
+        .card h3 { margin-bottom: 10px; font-size: 1.25rem; }
+        .card p, .card li { color: var(--text-dim); }
 
-        .card p,
-        .card li {
-            color: var(--text-dim);
-        }
+        ul { padding-left: 20px; margin-top: 15px; }
+        li { margin-bottom: 10px; }
 
-        ul {
-            padding-left: 20px;
-            margin-top: 15px;
+        /* ── SKILLS ── */
+        .sk-group { margin-bottom: 2rem; }
+        .sk-group-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .sk-group-icon {
+            width: 38px; height: 38px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px; flex-shrink: 0;
         }
-
-        li {
-            margin-bottom: 10px;
+        .sk-group-title {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--text-dim);
         }
-
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 9px; }
         .skill-pill {
-            padding: 10px 16px;
-            border-radius: 999px;
-            background: rgba(53,122,232,0.12);
-            border: 1px solid rgba(53,122,232,0.25);
-            color: var(--text-main);
-            font-size: 0.9rem;
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 7px 14px; border-radius: 999px;
+            font-size: 0.85rem; font-weight: 500; border: 1px solid;
         }
+        .skill-pill i { font-size: 14px; }
+        .sk-divider { border: none; border-top: 1px solid var(--border); margin: 0 0 1.8rem; }
 
-        footer {
+        /* pill colour variants */
+        .pill-blue   { background: rgba(53,122,232,0.12);  border-color: rgba(53,122,232,0.35);  color: #6ca0f0; }
+        .pill-teal   { background: rgba(29,158,117,0.12);  border-color: rgba(29,158,117,0.35);  color: #3ecfa0; }
+        .pill-purple { background: rgba(127,119,221,0.12); border-color: rgba(127,119,221,0.35); color: #a89ff5; }
+        .pill-coral  { background: rgba(216,90,48,0.12);   border-color: rgba(216,90,48,0.35);   color: #f09060; }
+        .pill-green  { background: rgba(99,153,34,0.12);   border-color: rgba(99,153,34,0.35);   color: #8dc84a; }
+        .pill-amber  { background: rgba(186,117,23,0.12);  border-color: rgba(186,117,23,0.35);  color: #f5b84a; }
+        .pill-gray   { background: rgba(136,135,128,0.12); border-color: rgba(136,135,128,0.35); color: #a0a098; }
+
+        /* icon bg variants */
+        .icon-blue   { background: rgba(53,122,232,0.15);  color: #6ca0f0; }
+        .icon-teal   { background: rgba(29,158,117,0.15);  color: #3ecfa0; }
+        .icon-purple { background: rgba(127,119,221,0.15); color: #a89ff5; }
+        .icon-coral  { background: rgba(216,90,48,0.15);   color: #f09060; }
+        .icon-green  { background: rgba(99,153,34,0.15);   color: #8dc84a; }
+        .icon-amber  { background: rgba(186,117,23,0.15);  color: #f5b84a; }
+        .icon-gray   { background: rgba(136,135,128,0.15); color: #a0a098; }
+
+        /* ── EXPERIENCE TIMELINE ── */
+        .timeline { position: relative; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 18px; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        .tl-item { position: relative; padding-left: 56px; margin-bottom: 48px; }
+        .tl-dot {
+            position: absolute; left: 10px; top: 4px;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--bg);
+            z-index: 1;
+        }
+        .tl-item .card { margin: 0; }
+        .tl-date { color: var(--primary); font-weight: 700; font-size: 0.9rem; margin: 6px 0 12px; }
+        .tl-company { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 4px; }
+
+        /* ── EDUCATION ── */
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+
+        /* ── SUMMARY ── */
+        .summary-card p { font-size: 1.05rem; line-height: 1.85; color: var(--text-dim); }
+        .summary-card strong { color: var(--text-main); }
+
+        /* ── STATS STRIP ── */
+        .stats-strip {
+            display: flex; flex-wrap: wrap; gap: 0;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 48px;
+        }
+        .stat {
+            flex: 1 1 150px;
+            padding: 28px 24px;
             text-align: center;
-            padding: 80px 20px;
-            background: #0d1117;
-            color: var(--text-dim);
+            border-right: 1px solid var(--border);
+        }
+        .stat:last-child { border-right: none; }
+        .stat-number { font-size: 2.2rem; font-weight: 800; color: var(--primary); }
+        .stat-label { font-size: 0.82rem; color: var(--text-dim); margin-top: 4px; }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center; padding: 80px 20px;
+            background: #0d1117; color: var(--text-dim);
             border-top: 1px solid var(--border);
         }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 30px; }
         .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: var(--primary);
-            color: white;
-            border-radius: 999px;
-            font-weight: 600;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 12px 24px; background: var(--primary);
+            color: white; border-radius: 999px; font-weight: 600;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
-
-        .contact-btn:hover {
-            transform: translateY(-3px);
-            opacity: 0.92;
+        .contact-btn:hover { transform: translateY(-3px); opacity: 0.92; }
+        .contact-btn.outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
         }
 
         @media (max-width: 768px) {
-            .terminal-window {
-                height: 60vh;
-            }
-
-            .terminal-body {
-                font-size: 0.85rem;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
+            .terminal-window { height: 60vh; }
+            .terminal-body { font-size: 0.85rem; }
+            h2 { font-size: 1.8rem; }
+            .nav-links { display: none; }
+            .timeline::before { left: 12px; }
+            .tl-dot { left: 4px; }
+            .tl-item { padding-left: 36px; }
         }
     </style>
 </head>
 <body>
 
+<nav>
+    <span class="nav-brand">VMC</span>
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#education">Education</a>
+    </div>
+</nav>
+
 <header>
     <div class="hero-wrapper">
-
         <div class="hero-title">
             <h1>Vineeth M Cherian</h1>
-            <p>Senior Cloud Infrastructure & Platform Engineer</p>
+            <p>Senior Cloud Infrastructure &amp; Platform Engineer</p>
+            <div class="hero-meta">
+                <span><i class="fas fa-map-marker-alt"></i> Melbourne, Victoria, AU</span>
+                <span><i class="fas fa-phone"></i> +61 0434 341 627</span>
+                <span><i class="fas fa-envelope"></i> <a href="mailto:Vineethcherian@gmail.com">Vineethcherian@gmail.com</a></span>
+            </div>
         </div>
 
         <div class="terminal-window">
-
             <div class="terminal-header">
                 <div class="dot red"></div>
                 <div class="dot yellow"></div>
                 <div class="dot green"></div>
                 <span class="terminal-label">vineeth@cloud-shell:~/portfolio</span>
             </div>
-
             <div class="terminal-body" id="terminal"></div>
         </div>
     </div>
@@ -330,170 +339,325 @@
 
 <main class="container">
 
+    <!-- ABOUT -->
     <section id="about">
         <h2><i class="fas fa-user"></i> About</h2>
-
-        <div class="card">
+        <div class="card summary-card">
             <p>
-                Experienced Cloud Infrastructure & Platform Engineer with expertise in Google Cloud Platform,
-                Infrastructure as Code, Observability, and Platform Operations. Passionate about building scalable,
-                secure, and reliable cloud solutions.
+                Experienced <strong>Cloud Operations and Site Reliability Engineer</strong> with <strong>8+ years</strong>
+                in infrastructure operations, specialising in <strong>GCP and AWS</strong> cloud environments.
+                Proven track record in automation, observability, incident management, and cloud-native operations.
+                Adept at enhancing system reliability and scalability through innovative tooling, monitoring solutions,
+                and infrastructure-as-code practices. Google Cloud certified at both
+                <strong>Associate and Professional Architect</strong> level.
             </p>
         </div>
     </section>
 
-    <section id="skills">
-        <h2><i class="fas fa-layer-group"></i> Skills</h2>
-
-        <div class="skills-grid">
-            <span class="skill-pill">Google Cloud Platform</span>
-            <span class="skill-pill">AWS</span>
-            <span class="skill-pill">Terraform</span>
-            <span class="skill-pill">Kubernetes</span>
-            <span class="skill-pill">Docker</span>
-            <span class="skill-pill">Linux</span>
-            <span class="skill-pill">BigQuery</span>
-            <span class="skill-pill">Prometheus</span>
-            <span class="skill-pill">Grafana</span>
-            <span class="skill-pill">Dynatrace</span>
-            <span class="skill-pill">CI/CD</span>
-            <span class="skill-pill">GitHub Actions</span>
+    <!-- STATS -->
+    <section id="stats">
+        <div class="stats-strip">
+            <div class="stat">
+                <div class="stat-number">8+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Companies</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Certifications</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Cloud Platforms</div>
+            </div>
         </div>
     </section>
 
+    <!-- SKILLS -->
+    <section id="skills">
+        <h2><i class="fas fa-layer-group"></i> Skills</h2>
+
+        <div class="sk-group">
+            <div class="sk-group-header">
+                <div class="sk-group-icon icon-blue"><i class="fas fa-cloud"></i></div>
+                <span class="sk-group-title">Cloud Platforms</span>
+            </div>
+            <div class="skills-grid">
+                <span class="skill-pill pill-blue">Google Cloud Platform</span>
+                <span class="skill-pill pill-blue">Amazon Web Services</span>
+            </div>
+        </div>
+        <hr class="sk-divider">
+
+        <div class="sk-group">
+            <div class="sk-group-header">
+                <div class="sk-group-icon icon-teal"><i class="fas fa-server"></i></div>
+                <span class="sk-group-title">Compute &amp; Infrastructure</span>
+            </div>
+            <div class="skills-grid">
+                <span class="skill-pill pill-teal">Compute Engine</span>
+                <span class="skill-pill pill-teal">VPC &amp; Subnets</span>
+                <span class="skill-pill pill-teal">IAM &amp; Workspace</span>
+                <span class="skill-pill pill-teal">Cloud KMS</span>
+                <span class="skill-pill pill-teal">Service Accounts</span>
+                <span class="skill-pill pill-teal">VMware vSphere</span>
+                <span class="skill-pill pill-teal">Oracle VM</span>
+                <span class="skill-pill pill-teal">Windows Server</span>
+            </div>
+        </div>
+        <hr class="sk-divider">
+
+        <div class="sk-group">
+            <div class="sk-group-header">
+                <div class="sk-group-icon icon-purple"><i class="fas fa-eye"></i></div>
+                <span class="sk-group-title">Observability &amp; Monitoring</span>
+            </div>
+            <div class="skills-grid">
+                <span class="skill-pill pill-purple">Cloud Monitoring</span>
+                <span class="skill-pill pill-purple">Cloud Logging</span>
+                <span class="skill-pill pill-purple">Error Reporting</span>
+                <span class="skill-pill pill-purple">Tracing &amp; Profiler</span>
+                <span class="skill-pill pill-purple">Prometheus</span>
+                <span class="skill-pill pill-purple">Grafana</span>
+                <span class="skill-pill pill-purple">Dynatrace</span>
+                <span class="skill-pill pill-purple">Splunk</span>
+            </div>
+        </div>
+        <hr class="sk-divider">
+
+        <div class="sk-group">
+            <div class="sk-group-header">
+                <div class="sk-group-icon icon-coral"><i class="fas fa-shield-alt"></i></div>
+                <span class="sk-group-title">Security</span>
+            </div>
+            <div class="skills-grid">
+                <span class="skill-pill pill-coral">Security Command Center</span>
+                <span class="skill-pill pill-coral">Zero-Trust</span>
+                <span class="skill-pill pill-coral">Cloud Armor</span>
+                <span class="skill-pill pill-coral">BeyondCorp Enterprise</span>
+                <span class="skill-pill pill-coral">Cloud KMS</span>
+                <span class="skill-pill pill-coral">IAM Policies</span>
+            </div>
+        </div>
+        <hr class="sk-divider">
+
+        <div class="sk-group">
+            <div class="sk-group-header">
+                <div class="sk-group-icon icon-green"><i class="fas fa-code-branch"></i></div>
+                <span class="sk-group-title">DevOps &amp; IaC</span>
+            </div>
+            <div class="skills-grid">
+                <span class="skill-pill pill-green">Terraform</span>
+                <span class="skill-pill pill-green">Kubernetes</span>
+                <span class="skill-pill pill-green">Docker</span>
+                <span class="skill-pill pill-green">GitHub Actions</span>
+                <span class="skill-pill pill-green">CI/CD Pipelines</span>
+            </div>
+        </div>
+        <hr class="sk-divider">
+
+        <div class="sk-group">
+            <div class="sk-group-header">
+                <div class="sk-group-icon icon-amber"><i class="fas fa-database"></i></div>
+                <span class="sk-group-title">Data &amp; Analytics</span>
+            </div>
+            <div class="skills-grid">
+                <span class="skill-pill pill-amber">BigQuery</span>
+                <span class="skill-pill pill-amber">Looker</span>
+                <span class="skill-pill pill-amber">Apache Airflow</span>
+                <span class="skill-pill pill-amber">Batch Pipelines (DAGs)</span>
+            </div>
+        </div>
+        <hr class="sk-divider">
+
+        <div class="sk-group">
+            <div class="sk-group-header">
+                <div class="sk-group-icon icon-gray"><i class="fas fa-ticket-alt"></i></div>
+                <span class="sk-group-title">ITSM &amp; Ticketing</span>
+            </div>
+            <div class="skills-grid">
+                <span class="skill-pill pill-gray">ServiceNow</span>
+                <span class="skill-pill pill-gray">HP Service Manager</span>
+                <span class="skill-pill pill-gray">Zendesk</span>
+                <span class="skill-pill pill-gray">OMI</span>
+                <span class="skill-pill pill-gray">Clarify</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <h2><i class="fas fa-briefcase"></i> Experience</h2>
+        <div class="timeline">
+
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="card">
+                    <span class="badge">Current Role</span>
+                    <h3>Senior Platform Engineer</h3>
+                    <div class="tl-company">Quantiphi Analytics Solutions Pvt. Ltd.</div>
+                    <div class="tl-date">Jun 2021 – Mar 2025 &nbsp;·&nbsp; GCP Cloud Operations</div>
+                    <ul>
+                        <li>Optimised GCP environments including Compute Engine VMs with custom machine types to balance cost, performance, and scalability.</li>
+                        <li>Built and maintained secure VPC networks and subnets for high availability across distributed environments.</li>
+                        <li>Implemented IAM, service accounts, and Cloud KMS to ensure strong security and compliance.</li>
+                        <li>Strengthened security posture using Security Command Center, Cloud Armor, IAM policies, and BeyondCorp Enterprise with zero-trust principles.</li>
+                        <li>Leveraged Cloud Monitoring, Logging, and Tracing for full-stack observability and proactive performance tuning.</li>
+                        <li>Led incident management including RCA and postmortems, reducing MTTR and improving reliability.</li>
+                        <li>Automated infrastructure provisioning using Terraform and CI/CD pipelines.</li>
+                        <li>Created architecture docs, SOPs, and runbooks to streamline operations and knowledge sharing.</li>
+                        <li>Mentored junior engineers and promoted best practices in cloud operations and security.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="card">
+                    <span class="badge">L2 Support</span>
+                    <h3>System Administrator (L2)</h3>
+                    <div class="tl-company">IBS Software Pvt. Ltd.</div>
+                    <div class="tl-date">Nov 2019 – May 2021 &nbsp;·&nbsp; IBS Data Center Operations</div>
+                    <ul>
+                        <li>Provided L2 monitoring and first-level troubleshooting for system and application infrastructure, minimising downtime and escalation rate.</li>
+                        <li>Managed day-to-day cloud environment activities and supported development teams with provisioning and infrastructure requirements.</li>
+                        <li>Monitored F5 load balancers and Oracle WebLogic application server health to maintain SLA targets.</li>
+                        <li>Performed VMware server hardening, patch management, and firmware updates using Update Manager and Lifecycle Manager.</li>
+                        <li>Resolved VM performance issues including storage latency and host connectivity, and participated in DR drills.</li>
+                        <li>Generated server performance reports using ServiceNow and maintained performance baselines for proactive capacity planning.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="card">
+                    <span class="badge">L1 Support</span>
+                    <h3>Windows Administrator (L1)</h3>
+                    <div class="tl-company">Claritaz Techlabs LLP (for Tech Mahindra)</div>
+                    <div class="tl-date">Oct 2018 – May 2019 &nbsp;·&nbsp; Singtel Optus Data Center Operations</div>
+                    <ul>
+                        <li>Monitored Microsoft Windows Servers 2008/2012/2016 using HPOVO and Dynatrace, ensuring 24×7 visibility of infrastructure health.</li>
+                        <li>Managed OS user accounts, permissions, and password resets in compliance with access control policies.</li>
+                        <li>Collaborated with L2 onsite teams to troubleshoot high CPU, out-of-memory, and disk space issues, maintaining application performance SLAs.</li>
+                        <li>Worked cross-functionally with security teams to identify, resolve, and mitigate system vulnerabilities.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="card">
+                    <span class="badge">ERP</span>
+                    <h3>System Engineer</h3>
+                    <div class="tl-company">Avanix Technologies</div>
+                    <div class="tl-date">Oct 2016 – Aug 2018 &nbsp;·&nbsp; ISER ERP 10.1</div>
+                    <ul>
+                        <li>Provided operational support for ERP system implementation, resolving server and OS issues via ticketing system.</li>
+                        <li>Identified technical environment issues and implemented permanent resolutions to reduce recurring incidents.</li>
+                        <li>Collaborated with project management and client teams to ensure smooth implementation and handover.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
     <section id="certifications">
         <h2><i class="fas fa-certificate"></i> Certifications</h2>
-
         <div class="grid">
             <div class="card">
                 <span class="badge">Google Cloud</span>
                 <h3>Professional Cloud Architect</h3>
-                <p>
-                    Proficient in designing and managing scalable, secure, and reliable cloud architectures on GCP.
-                </p>
+                <p>Proficient in designing and managing scalable, secure, and reliable cloud architectures on GCP.</p>
             </div>
-
             <div class="card">
                 <span class="badge">Google Cloud</span>
                 <h3>Associate Cloud Engineer</h3>
-                <p>
-                    Experienced in deploying applications, managing infrastructure, and monitoring cloud operations.
-                </p>
+                <p>Experienced in deploying applications, managing infrastructure, and monitoring cloud operations.</p>
             </div>
-
             <div class="card">
-                <span class="badge">ITIL®</span>
-                <h3>ITIL Foundation</h3>
-                <p>
-                    Certified in IT Service Management best practices and operational excellence.
-                </p>
+                <span class="badge badge-green">ITIL®</span>
+                <h3>ITIL® 4 Foundation</h3>
+                <p>Certified in IT Service Management best practices and operational excellence.</p>
             </div>
         </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects">
         <h2><i class="fas fa-code"></i> Projects</h2>
-
         <div class="grid">
             <div class="card">
                 <h3>Terraform GCP Landing Zone</h3>
-                <p>
-                    Built reusable Terraform modules for secure multi-project Google Cloud deployments.
-                </p>
+                <p>Built reusable Terraform modules for secure multi-project Google Cloud deployments.</p>
             </div>
-
             <div class="card">
                 <h3>Kubernetes Monitoring Stack</h3>
-                <p>
-                    Implemented Prometheus and Grafana observability for containerized workloads.
-                </p>
+                <p>Implemented Prometheus and Grafana observability for containerised workloads.</p>
             </div>
-
             <div class="card">
                 <h3>CI/CD Automation Pipeline</h3>
-                <p>
-                    Designed automated deployment workflows using GitHub Actions and infrastructure validation.
-                </p>
+                <p>Designed automated deployment workflows using GitHub Actions and infrastructure validation.</p>
             </div>
         </div>
     </section>
 
-    <section id="experience">
-        <h2><i class="fas fa-briefcase"></i> Experience</h2>
-
-        <div class="card">
-            <h3>Senior Platform Engineer | Quantiphi Analytics</h3>
-
-            <p style="color: var(--primary); font-weight: 700; margin-top: 10px;">
-                2021 – 2025
-            </p>
-
-            <ul>
-                <li>Managed Compute Engine infrastructure and optimized BigQuery workloads.</li>
-                <li>Implemented Zero Trust security controls and operational monitoring.</li>
-                <li>Automated infrastructure provisioning using Terraform and CI/CD pipelines.</li>
-                <li>Improved observability using Prometheus, Grafana, and Dynatrace.</li>
-            </ul>
+    <!-- EDUCATION -->
+    <section id="education">
+        <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+        <div class="edu-grid">
+            <div class="card">
+                <span class="badge">Postgraduate</span>
+                <h3>Master of Computer Applications (MCA)</h3>
+                <p style="margin-top: 8px;">Bharathiar University</p>
+                <p style="font-size:0.85rem; margin-top:4px;">Coimbatore, Tamil Nadu, India</p>
+            </div>
+            <div class="card">
+                <span class="badge">Undergraduate</span>
+                <h3>BSc Computer Science</h3>
+                <p style="margin-top: 8px;">Mahatma Gandhi University</p>
+                <p style="font-size:0.85rem; margin-top:4px;">Kottayam, Kerala, India</p>
+            </div>
         </div>
     </section>
+
 </main>
 
 <footer>
     <p>Melbourne, Victoria, Australia</p>
-
     <div class="footer-links">
-
-        <a href="mailto:vineethcherian@gmail.com" class="contact-btn">
-            <i class="fas fa-envelope"></i>
-            Email
+        <a href="mailto:Vineethcherian@gmail.com" class="contact-btn">
+            <i class="fas fa-envelope"></i> Email
         </a>
-
-        <a href="https://github.com/your-github" target="_blank" class="contact-btn">
-            <i class="fab fa-github"></i>
-            GitHub
+        <a href="tel:+610434341627" class="contact-btn outline">
+            <i class="fas fa-phone"></i> +61 0434 341 627
         </a>
-
-        <a href="https://linkedin.com/in/your-linkedin" target="_blank" class="contact-btn">
-            <i class="fab fa-linkedin"></i>
-            LinkedIn
+        <a href="https://github.com/your-github" target="_blank" class="contact-btn outline">
+            <i class="fab fa-github"></i> GitHub
         </a>
-
+        <a href="https://linkedin.com/in/your-linkedin" target="_blank" class="contact-btn outline">
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
     </div>
-
-    <p style="margin-top: 35px; font-size: 0.85rem;">
-        © 2026 Vineeth M Cherian
-    </p>
+    <p style="margin-top: 35px; font-size: 0.85rem;">© 2026 Vineeth M Cherian</p>
 </footer>
 
 <script>
     const term = document.getElementById('terminal');
 
     const terminalScript = [
-        {
-            cmd: 'whoami',
-            output: 'Vineeth M Cherian\nSenior Cloud Infrastructure & Platform Engineer',
-            delay: 700
-        },
-        {
-            cmd: 'location --current',
-            output: 'Melbourne, Australia',
-            delay: 600
-        },
-        {
-            cmd: 'gcloud projects list',
-            output: 'Loaded active cloud projects successfully.',
-            delay: 700
-        },
-        {
-            cmd: 'cat skills.json',
-            output: '{\n  "cloud": ["GCP", "AWS"],\n  "iac": ["Terraform"],\n  "containers": ["Docker", "Kubernetes"],\n  "monitoring": ["Prometheus", "Grafana", "Dynatrace"]\n}',
-            delay: 1000
-        },
-        {
-            cmd: 'status --availability',
-            output: 'Available for Cloud & Platform Engineering opportunities.',
-            delay: 900
-        }
+        { cmd: 'whoami', output: 'Vineeth M Cherian\nSenior Cloud Infrastructure & Platform Engineer', delay: 700 },
+        { cmd: 'location --current', output: 'Melbourne, Victoria, AU', delay: 500 },
+        { cmd: 'experience --years', output: '8+ years in Cloud Infrastructure & SRE', delay: 600 },
+        { cmd: 'gcloud certifications list', output: '✓ GCP Professional Cloud Architect\n✓ GCP Associate Cloud Engineer\n✓ ITIL® 4 Foundation', delay: 800 },
+        { cmd: 'cat skills.json', output: '{\n  "cloud": ["GCP", "AWS"],\n  "iac": ["Terraform"],\n  "containers": ["Docker", "Kubernetes"],\n  "monitoring": ["Prometheus", "Grafana", "Dynatrace", "Splunk"],\n  "security": ["SCC", "Zero-Trust", "Cloud Armor", "BeyondCorp"]\n}', delay: 1000 },
+        { cmd: 'status --availability', output: 'Open to Cloud & Platform Engineering opportunities in Melbourne.', delay: 900 }
     ];
 
     async function typeText(element, text, speed = 45) {
@@ -505,60 +669,26 @@
 
     async function runTerminal() {
         for (const line of terminalScript) {
-
             const lineDiv = document.createElement('div');
             lineDiv.className = 'cmd-line';
-            lineDiv.innerHTML = `
-                <span class="prompt">vineeth@cloud:~$</span>
-                <span class="command-text"></span>
-            `;
-
+            lineDiv.innerHTML = `<span class="prompt">vineeth@cloud:~$</span><span class="command-text"></span>`;
             term.appendChild(lineDiv);
-
             const cmdText = lineDiv.querySelector('.command-text');
-
             await typeText(cmdText, line.cmd);
-
             await new Promise(resolve => setTimeout(resolve, 300));
-
             const output = document.createElement('div');
             output.className = 'output-text';
             output.innerText = line.output;
-
             term.appendChild(output);
-
             term.scrollTop = term.scrollHeight;
-
             await new Promise(resolve => setTimeout(resolve, line.delay));
         }
-
         const finalPrompt = document.createElement('div');
-        finalPrompt.innerHTML = `
-            <span class="prompt">vineeth@cloud:~$</span>
-            <span class="cursor"></span>
-        `;
-
+        finalPrompt.innerHTML = `<span class="prompt">vineeth@cloud:~$</span><span class="cursor"></span>`;
         term.appendChild(finalPrompt);
     }
 
     window.addEventListener('load', runTerminal);
 </script>
-
 </body>
 </html>
-```
-
-# Final Notes
-
-Replace these placeholders before deploying:
-
-* `https://github.com/your-github`
-* `https://linkedin.com/in/your-linkedin`
-
-Save this as:
-
-```text
-index.html
-```
-
-Then upload it to your GitHub repository and enable GitHub Pages.
